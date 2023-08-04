@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { Alert } from "@material-tailwind/react";
@@ -35,7 +35,8 @@ const EditPatient = () => {
       <div className="bg-white p-8 rounded-lg shadow-md w-full sm:w-3/4 md:w-2/3 lg:w-1/2">
         <h2 className="text-2xl font-semibold mb-4">Edit Patient</h2>
         <Alert className='bg-[#f9e6ca] text-[#e65100]'  variant="ghost">
-        <h1><span className='text-red-600'><FontAwesomeIcon className='text-lg md:text-base mr-2' icon={faCircleExclamation} />CAUTION:</span>&nbsp;it is mandatory to give all the datas</h1>
+        <h1><span className='text-red-600'><FontAwesomeIcon className='text-lg md:text-base mr-2' icon={faCircleExclamation} />
+        CAUTION:</span>&nbsp;If you don't also change it, you must supply the FEIDs.</h1>
       </Alert>
         <form onSubmit={handleEdit}>
           <div className="mb-4">

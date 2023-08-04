@@ -139,6 +139,21 @@ patientdetailExpressRoute
     // console.log(data)
     res.send(data)
   })
+  patientdetailExpressRoute
+  .route("/adduser")
+  .post(async (req, res, next) => {
+    const newPatient = new PatientdetailSchema(req.body);
+    
+    try {
+      const savedPatient = await newPatient.save();
+      res.status(201).json({
+        data: savedPatient,
+        message: "Data successfully added!",
+      });
+    } catch (error) {
+      next(error);
+    }
+  })
 
 //   patientdetailExpressRoute.route('/')
 module.exports = patientdetailExpressRoute;

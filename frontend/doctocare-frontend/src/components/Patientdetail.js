@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import { faAdd } from '@fortawesome/free-solid-svg-icons';
 
 export default function Patientdetail() {
   const [docs, setDocs] = useState([]);
@@ -37,12 +39,17 @@ export default function Patientdetail() {
 
   return (
     <div className="w-full px-4 py-8">
-        <Link to={"/add-user"} className="hover:bg-teal-600
-            hover:border-2 hover:border-white mx-[40%] flex justify-end hover:text-teal-200 hover:shadow-md rounded-lg
-             bg-white font-bold text-black py-2 px-2">Add Users</Link>
+       <div className="flex justify-end items-end mr-8">
+  <Link
+    to="/adduser"
+    className="hover:bg-[#97cf49] hover:border-2 hover:border-white flex items-center
+     hover:text-red-700 hover:shadow-md rounded-lg bg-white font-bold text-black py-1 px-2">
+      <FontAwesomeIcon className='text-xl text-red-700  md:text-base mr-2' icon={faAdd} />Add Users
+  </Link>
+</div>
       <h1 className="text-3xl font-bold mb-8 text-center">DATA TABLE</h1>
       <div className="overflow-x-auto">
-        <table className="min-w-full text-center">
+        <table className="min-w-full  text-center">
           <thead className="bg-gray-800">
             <tr>
               <th className="px-4 py-3 text-sm font-medium text-white">#</th>
