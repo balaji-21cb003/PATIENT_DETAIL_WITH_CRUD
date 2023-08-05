@@ -113,7 +113,7 @@ export default function Patientdetail() {
     <FontAwesomeIcon className='text-xl text-red-700 md:text-base mr-2' icon={faAdd} />Add Users
   </Link>
 </div>
-<h1 className="text-3xl font-bold mb-8 text-center">DATA TABLE</h1>
+<h1 className="text-3xl font-bold mb-8 text-center">PATIENT TABLE</h1>
 <div className="overflow-x-auto">
   <table className="min-w-full text-center shadow-lg">
     <thead className="bg-gray-800">

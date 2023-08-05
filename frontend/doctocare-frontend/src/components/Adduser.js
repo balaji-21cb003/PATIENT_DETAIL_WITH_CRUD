@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import {  useParams } from 'react-router-dom';
 import Navbar from './navbar';
 
 export default function Adduser() {
   const { id } = useParams();
+
 
   const [inputs, setInputs] = useState({
     pname: "",
@@ -21,8 +22,12 @@ export default function Adduser() {
     axios
       .post(`http://localhost:3001/patientdetail/adduser`, inputs)
       .then((response) => {
+        
+
         console.log(response.data);
-        alert("Your data has been added!");
+        alert("data added successfully!");
+        alert("return to the previous page to view your newly contributed data")
+        // alert("Your data has been added!");
         // Clear the input fields after successful addition
         setInputs({
           pname: "",
@@ -35,17 +40,17 @@ export default function Adduser() {
       })
       .catch((error) => {
         console.error("Error adding data:", error);
-        alert("go back the previous page");
+        
       });
   }
   return (
 
-    <div className="px-10 py-5 w-full h-screen wrap justify-center items-center bg-gradient-to-br px-4 py-8 from-blue-400 to-purple-500">
+    <div className=" w-full h-screen wrap justify-center items-center bg-gradient-to-br px-4 py-8 from-blue-400 to-purple-500">
       <div className='flex justify-center items-center mt-10'>
         <Navbar/>
       </div>
-  <h1 className="text-2xl font-semibold mt-7 ml-[45%] text-[#ff6f61] mb-4">~Add New Patient Detail!</h1>
-  <form onSubmit={handleEdit} className="space-y-4 ml-[45%] wrap justify-center items-center">
+  <h1 className="text-2xl font-semibold mt-7 ml-[40%] text-[#ff6f61] mb-4">~Add New Patient Detail!</h1>
+  <form onSubmit={handleEdit} className="space-y-4 ml-[40%] wrap justify-center items-center">
     <div>
       <label htmlFor="pname" className="block text-sm font-medium">
         Patient Name:
