@@ -17,6 +17,7 @@ function App() {
           <Route path="/edit-user/:id" element={<EditPatient/>}/>
           <Route path="/view/:id" element={<View/>}/>
           <Route path="/adduser" element={<Adduser/>}/>
+          
       </Routes>
       
     </div>

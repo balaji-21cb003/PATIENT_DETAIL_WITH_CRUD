@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import Navbar from './navbar';
 
 export default function Adduser() {
   const { id } = useParams();
@@ -34,13 +35,17 @@ export default function Adduser() {
       })
       .catch((error) => {
         console.error("Error adding data:", error);
+        alert("go back the previous page");
       });
   }
   return (
 
-    <div className="p-8">
-  <h1 className="text-2xl font-bold mb-4">Add New Patient</h1>
-  <form onSubmit={handleEdit} className="space-y-4">
+    <div className="px-10 py-5 w-full h-screen wrap justify-center items-center bg-gradient-to-br px-4 py-8 from-blue-400 to-purple-500">
+      <div className='flex justify-center items-center mt-10'>
+        <Navbar/>
+      </div>
+  <h1 className="text-2xl font-semibold mt-7 ml-[45%] text-[#ff6f61] mb-4">~Add New Patient Detail!</h1>
+  <form onSubmit={handleEdit} className="space-y-4 ml-[45%] wrap justify-center items-center">
     <div>
       <label htmlFor="pname" className="block text-sm font-medium">
         Patient Name:
@@ -50,7 +55,7 @@ export default function Adduser() {
         id="pname"
         name="pname"
         onChange={(event) => (inputs["pname"] = event.target.value)}
-        className="mt-1 p-2 border rounded w-full"
+        className="mt-1 p-2 border rounded w-[35%]"
       />
     </div>
     <div>
@@ -62,7 +67,7 @@ export default function Adduser() {
         id="age"
         name="age"
         onChange={(event) => (inputs["age"] = event.target.value)}
-        className="mt-1 p-2 border rounded w-full"
+        className="mt-1 p-2 border rounded w-[35%]"
       />
     </div>
     <div>
@@ -74,7 +79,7 @@ export default function Adduser() {
         id="pid"
         name="pid"
         onChange={(event) => (inputs["pid"] = event.target.value)}
-        className="mt-1 p-2 border rounded w-full"
+        className="mt-1 p-2 border rounded w-[35%]"
       />
     </div>
     <div>
@@ -86,7 +91,7 @@ export default function Adduser() {
         id="doc_id"
         name="doc_id"
         onChange={(event) => (inputs["doc_id"] = event.target.value)}
-        className="mt-1 p-2 border rounded w-full"
+        className="mt-1 p-2 border rounded w-[35%]"
       />
     </div>
     <div>
@@ -98,7 +103,7 @@ export default function Adduser() {
         id="date"
         name="date"
         onChange={(event) => (inputs["date"] = event.target.value)}
-        className="mt-1 p-2 border rounded w-full"
+        className="mt-1 p-2 border rounded w-[35%]"
       />
     </div>
     <div>
@@ -110,12 +115,12 @@ export default function Adduser() {
         id="contact"
         name="contact"
         onChange={(event) => (inputs["contact"] = event.target.value)}
-        className="mt-1 p-2 border rounded w-full"
+        className="mt-1 p-2 border rounded w-[35%]"
       />
     </div>
     <button
       type="submit"
-      className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+      className="bg-[#ff6f61] text-white px-4 py-2 rounded hover:bg-blue-600"
     >
       Add
     </button>
