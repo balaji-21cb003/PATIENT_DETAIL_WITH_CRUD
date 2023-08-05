@@ -1,41 +1,3 @@
-// const express = require("express");
-// const patientdetailExpressRoute = express.Router();
-// const cors = require("cors");
-// let PatientdetailSchema = require("../model/patientdetailmodel");
-// // CORS OPTIONS
-// var whitelist =["https://localhost:8100", "https://localhost:4000","https://localhost:3000"];
-// var corsOptionsDelegate = function (req, callback) {
-//   var corsOptions;
-//   if (whitelist.indexOf(req.header("Origin")) !== -1) {
-//     console.log(whitelist[0]);
-//     corsOptions = {
-//       origin: "*",
-//       methods: ["GET","POST"],//HEAD,PUT,PATCH,POST,DELETE",
-//     };
-//   } else {
-//     corsOptions = { origin: false }; // disable CORS for this request
-//   }
-//   callback(null, corsOptions);
-// };
-// // Get users
-// patientdetailExpressRoute
-//   .route("/", cors(corsOptionsDelegate))
-//   .get(async (req, res, next) => {
-//     await PatientdetailSchema.find()
-//       .then((result) => {
-//        console.log(result);
-//         res.json({
-//           data: result,
-//           // message: "Data successfully fetched!",
-//           // status: 200,
-//         });
-//       })
-//       .catch((err) => {
-//         return next(err);
-//       });
-//   });
-//   module.exports=patientdetailExpressRoute ;
-
 const express = require("express");
 const patientdetailExpressRoute = express.Router();
 const cors = require("cors");
@@ -43,7 +5,11 @@ let PatientdetailSchema = require("../model/patientdetailmodel");
 
 // CORS OPTIONS
 // patientdetailExpressRoute.use(cors)
-var whitelist =["https://localhost:8100", "https://localhost:4000","https://localhost:3000"];
+var whitelist = [
+  "https://localhost:8100",
+  "https://localhost:4000",
+  "https://localhost:3000",
+];
 var corsOptionsDelegate = function (req, callback) {
   var corsOptions;
   if (whitelist.indexOf(req.header("Origin")) !== -1) {
@@ -79,7 +45,8 @@ patientdetailExpressRoute
     const newPatient = new PatientdetailSchema(req.body);
     // const {_id} = newPatient
     // console.log(_id)
-    await newPatient.save()
+    await newPatient
+      .save()
       .then((result) => {
         res.status(201).json({
           data: result,
@@ -107,53 +74,51 @@ patientdetailExpressRoute
   })
 
   .put(async (req, res, next) => {
-    const {patientId} = req.body; // Assuming you provide the id in the request body
-    const {newdata} = req.body; // Assuming you provide the updated data
-    console.log(patientId)
-    console.log(req.body)
-    await PatientdetailSchema.findByIdAndUpdate(patientId, newdata, { new: true })
+    const { patientId } = req.body; // Assuming you provide the id in the request body
+    const { newdata } = req.body; // Assuming you provide the updated data
+    console.log(patientId);
+    console.log(req.body);
+    await PatientdetailSchema.findByIdAndUpdate(patientId, newdata, {
+      new: true,
+    })
       .then((result) => {
-        console.log(result)
+        console.log(result);
         res.json({
           data: result,
           message: "Data successfully updated!",
-          
         });
         console.log(result);
         console.log(newdata);
         console.log(patientId);
-
       })
       .catch((err) => {
         return next(err);
       });
   });
 
-  patientdetailExpressRoute
+patientdetailExpressRoute
   .route("/:id")
   .all(cors(corsOptionsDelegate))
   .get(async (req, res, next) => {
-    const {id} =req.params
-    console.log(id)
-    const data= await PatientdetailSchema.findById(id)
+    const { id } = req.params;
+    console.log(id);
+    const data = await PatientdetailSchema.findById(id);
     // console.log(data)
-    res.send(data)
-  })
-  patientdetailExpressRoute
-  .route("/adduser")
-  .post(async (req, res, next) => {
-    const newPatient = new PatientdetailSchema(req.body);
-    
-    try {
-      const savedPatient = await newPatient.save();
-      res.status(201).json({
-        data: savedPatient,
-        message: "Data successfully added!",
-      });
-    } catch (error) {
-      next(error);
-    }
-  })
+    res.send(data);
+  });
+patientdetailExpressRoute.route("/adduser").post(async (req, res, next) => {
+  const newPatient = new PatientdetailSchema(req.body);
+
+  try {
+    const savedPatient = await newPatient.save();
+    res.status(201).json({
+      data: savedPatient,
+      message: "Data successfully added!",
+    });
+  } catch (error) {
+    next(error);
+  }
+});
 
 //   patientdetailExpressRoute.route('/')
 module.exports = patientdetailExpressRoute;
